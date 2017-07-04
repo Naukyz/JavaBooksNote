@@ -14,7 +14,7 @@ public class SleepingTask extends LiftOff {
                     System.out.print(status() + "  ");
                 }
                 Thread.sleep(500);
-                // TimeUnit.MICROSECONDS.sleep(500);
+                // TimeUnit.MICROSECONDS.sleep(5000);
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
