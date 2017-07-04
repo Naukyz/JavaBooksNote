@@ -9,9 +9,10 @@ public class Daemons {
     public static void main(String[] args) throws InterruptedException {
         Thread d = new Thread(new Daemon());
         d.setDaemon(true);
+        // 在 后台线程 里面开启的线程 也是后台线程
         d.start();
         System.out.println("d.isDaemon() = " + d.isDaemon() + ".");
-        Thread.sleep(100);
+        Thread.sleep(1000);
     }
 
 }
