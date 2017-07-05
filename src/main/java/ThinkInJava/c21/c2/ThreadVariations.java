@@ -140,6 +140,7 @@ class InnerRunnable2 {
                 }
             }
         }, name);
+        thread.start();
     }
 }
 
