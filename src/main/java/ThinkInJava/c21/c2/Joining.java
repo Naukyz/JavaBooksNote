@@ -7,8 +7,8 @@ package ThinkInJava.c21.c2;
 
 public class Joining{
     public static void main(String[] args){
-        Sleeper sleepy = new Sleeper("Sleepy",1500);
-        Joiner dopey = new Joiner("Dopey",sleepy);
+//        Sleeper sleepy = new Sleeper("Sleepy",1500);
+//        Joiner dopey = new Joiner("Dopey",sleepy);
 
         Sleeper grumpy = new Sleeper("Grumpy",1500);
         Joiner doc = new Joiner("Doc",grumpy);
@@ -34,7 +34,6 @@ class Sleeper extends Thread {
         } catch (InterruptedException e) {
             System.out.println(
                     getName() + " was interrupted . isInterrupted():" + isInterrupted()
-
             );
             return;
         }
