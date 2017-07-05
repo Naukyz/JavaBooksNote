@@ -1,6 +1,5 @@
 package ThinkInJava.c21.c2;
 
-
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
