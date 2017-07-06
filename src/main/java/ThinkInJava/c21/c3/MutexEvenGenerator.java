@@ -18,7 +18,7 @@ public class MutexEvenGenerator extends IntGenerator {
         try {
             ++currentEvenValue;
             Thread.yield();
-            ++currentEvenValue;
+             ++currentEvenValue;
             return currentEvenValue;
         } finally {
             lock.unlock();
