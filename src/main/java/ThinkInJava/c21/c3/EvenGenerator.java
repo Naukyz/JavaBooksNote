@@ -11,7 +11,7 @@ public class EvenGenerator extends IntGenerator {
     @Override
     public int next() {
         ++currentEvenValue;
-        // Danger point here
+        // Danger point here !
         Thread.yield();
         ++currentEvenValue;
 
