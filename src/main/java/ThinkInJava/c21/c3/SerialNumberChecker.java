@@ -7,14 +7,12 @@ import java.util.concurrent.Executors;
  * Created by zhao_yukuan@163.com
  * on 2017/7/7
  */
-
 public class SerialNumberChecker {
     private static final int SIZE = 10;
     private static CircularSet serials = new CircularSet(1000);
     private static ExecutorService executor = Executors.newCachedThreadPool();
 
     static class SerialChecker implements Runnable {
-
         @Override
         public void run() {
             while (true) {
@@ -39,7 +37,6 @@ public class SerialNumberChecker {
             }
         }
     }
-
 }
 
 class CircularSet {
@@ -68,8 +65,4 @@ class CircularSet {
         }
         return false;
     }
-
 }
-
-
-

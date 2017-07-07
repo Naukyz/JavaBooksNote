@@ -5,7 +5,6 @@ package ThinkInJava.c21.c3;
  * on 2017/7/5
  */
 public class EvenGenerator extends IntGenerator {
-
     private int currentEvenValue = 0;
 
     @Override
@@ -14,12 +13,10 @@ public class EvenGenerator extends IntGenerator {
         // Danger point here !
         Thread.yield();
         ++currentEvenValue;
-
         return currentEvenValue;
     }
 
     public static void main(String[] args) {
         EvenChecker.test(new EvenGenerator());
-
     }
 }

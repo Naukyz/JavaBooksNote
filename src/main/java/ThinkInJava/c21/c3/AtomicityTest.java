@@ -7,12 +7,11 @@ import java.util.concurrent.Executors;
  * Created by zhao_yukuan@163.com
  * on 2017/7/7
  */
-public class AtomicityTest implements Runnable {
 
+public class AtomicityTest implements Runnable {
     private int i = 0;
 
-    // 写上 synchronized 之后程序无措
-    public synchronized int getValue() {
+    public int getValue() {
         return i;
     }
 
@@ -37,9 +36,7 @@ public class AtomicityTest implements Runnable {
             if (val % 2 != 0) {
                 System.out.println(val);
                 System.exit(0);
-
             }
         }
     }
-
 }

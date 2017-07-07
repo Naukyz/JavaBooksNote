@@ -7,7 +7,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class AtomicIntegerTest implements Runnable {
-
     private AtomicInteger i = new AtomicInteger(0);
 
     public int getValue() {
@@ -36,7 +35,6 @@ public class AtomicIntegerTest implements Runnable {
                     }
                 }, 5000
         );
-
         ExecutorService executor = Executors.newCachedThreadPool();
         AtomicIntegerTest atomicIntegerTest = new AtomicIntegerTest();
         executor.execute(atomicIntegerTest);

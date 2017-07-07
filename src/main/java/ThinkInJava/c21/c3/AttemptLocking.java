@@ -34,13 +34,11 @@ public class AttemptLocking {
         } finally {
             if (captured) {
                 lock.unlock();
-
             }
         }
     }
 
     public static void main(String[] args) throws InterruptedException {
-
         final AttemptLocking al = new AttemptLocking();
         al.unTimed();
         al.timed();
@@ -60,5 +58,4 @@ public class AttemptLocking {
         al.unTimed();
         al.timed();
     }
-
 }
