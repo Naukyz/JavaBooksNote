@@ -12,7 +12,7 @@ public class AtomicityTest implements Runnable {
     private int i = 0;
 
     // 写上 synchronized 之后程序无措
-    public int getValue() {
+    public synchronized int getValue() {
         return i;
     }
 

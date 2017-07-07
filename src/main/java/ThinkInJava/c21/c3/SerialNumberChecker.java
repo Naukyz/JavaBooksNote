@@ -18,6 +18,7 @@ public class SerialNumberChecker {
         @Override
         public void run() {
             while (true) {
+                // 正常情况下 不应该出现 相同的值 但是 因为 ++ 不是原子的 所以 会 重复
                 int serial = SerialNumberGenerator.nextSerialNumber();
                 if (serials.contains(serial)) {
                     System.out.println("Duplicate: " + serial);
