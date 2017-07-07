@@ -24,7 +24,6 @@ public class AttemptLocking {
     public void timed() {
         boolean captured;
         try {
-            // 经试验 感觉会阻塞
             captured = lock.tryLock(2, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             throw new RuntimeException();
