@@ -23,6 +23,7 @@ public class SerialNumberChecker {
                     System.exit(0);
                 }
                 serials.add(serial);
+                // System.out.println(serial);
             }
         }
     }
