@@ -85,7 +85,7 @@ class ExplicitPairManager1 extends PairManagerReentrantLock {
 
 class ExplicitPairManager2 extends PairManagerReentrantLock {
     @Override
-    public synchronized void increment() {
+    public void increment() {
         Pair temp;
         lock.lock();
         try {
