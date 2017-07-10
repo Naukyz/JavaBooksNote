@@ -14,6 +14,8 @@ class SleepBlocked implements Runnable {
     @Override
     public void run() {
         Thread.currentThread().setName("SleepBlocked");
+        // 离开run循环而不抛出异常的第二种方式
+        // Thread.interrupted();
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
@@ -90,8 +92,7 @@ public class Interrupting {
 //        test(new SleepBlocked());
 //        test(new IOBlocked(System.in));
         test(new SynchronizedBlocked());
-        Thread.sleep(3);
-        System.out.println(Thread.currentThread().getName() + "  Aborting with System.exit(0)");
-        System.exit(0);
+
+        Interrupting.executor.shutdown();
     }
 }
