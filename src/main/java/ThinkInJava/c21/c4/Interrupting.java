@@ -1,5 +1,6 @@
 package ThinkInJava.c21.c4;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -10,14 +11,16 @@ import java.util.concurrent.Future;
  * on 2017/7/9
  */
 class SleepBlocked implements Runnable {
+
     @Override
     public void run() {
+        Thread.currentThread().setName("SleepBlocked");
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            System.out.println(Thread.currentThread().getName() + "  InterruptedException ");
         }
-        System.out.println("Exiting SleepBlocked.run()");
+        System.out.println(Thread.currentThread().getName() + "  Exiting SleepBlocked.run()");
     }
 }
 
@@ -30,16 +33,21 @@ class IOBlocked implements Runnable {
 
     @Override
     public void run() {
+        Thread.currentThread().setName("IOBlocked");
+
         try {
-            System.out.println("Waiting for read():");
-        } catch (Exception e) {
+            System.out.println(Thread.currentThread().getName() + "  Waiting for read():");
+            in.read();
+        } catch (IOException e) {
+            // isInterrupted() 是否是中断状态
+            // interrupted() 重置中断状态
             if (Thread.currentThread().isInterrupted()) {
-                System.out.println("Interrupted from blocked I/O");
+                System.out.println(Thread.currentThread().getName() + "  Interrupted from blocked I/O");
             } else {
                 throw new RuntimeException(e);
             }
         }
-        System.out.println("Exiting IOBlocked.run()");
+        System.out.println(Thread.currentThread().getName() + "  Exiting IOBlocked.run()");
     }
 }
 
@@ -61,9 +69,11 @@ class SynchronizedBlocked implements Runnable {
 
     @Override
     public void run() {
-        System.out.println("Trying to call f()");
+        Thread.currentThread().setName("SynchronizedBlocked");
+        System.out.println(Thread.currentThread().getName() + "  Trying to call f()");
+        // 构造方法里面有一个线程获得了锁 所以下面的 f() 阻塞
         f();
-        System.out.println("Exiting SynchronizedBlocked.run()");
+        System.out.println(Thread.currentThread().getName() + "  Exiting SynchronizedBlocked.run()");
     }
 }
 
@@ -72,18 +82,19 @@ public class Interrupting {
 
     static void test(Runnable r) throws InterruptedException {
         Future<?> f = executor.submit(r);
-        Thread.sleep(100);
-        System.out.println("Interrupting " + r.getClass().getName());
+        Thread.sleep(50);
+
+        System.out.println(Thread.currentThread().getName() + "  Interrupting " + r.getClass().getName());
         f.cancel(true);
-        System.out.println("Interrupt sent to " + r.getClass().getName());
+        System.out.println(Thread.currentThread().getName() + "  Interrupt sent to " + r.getClass().getName());
     }
 
     public static void main(String[] args) throws InterruptedException {
-        test(new SleepBlocked());
+//        test(new SleepBlocked());
 //        test(new IOBlocked(System.in));
-//        test(new SynchronizedBlocked());
+        test(new SynchronizedBlocked());
         Thread.sleep(3);
-        System.out.println("Aborting with System.exit(0)");
+        System.out.println(Thread.currentThread().getName() + "  Aborting with System.exit(0)");
         System.exit(0);
     }
 }

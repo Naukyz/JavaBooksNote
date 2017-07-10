@@ -11,7 +11,11 @@ import java.util.concurrent.Executors;
 public class AtomicityTest implements Runnable {
     private int i = 0;
 
-    public int getValue() {
+//    public int  getValue() {
+//        return i;
+//    }
+
+    public synchronized int  getValue() {
         return i;
     }
 
