@@ -11,7 +11,6 @@ import java.util.concurrent.Future;
  * on 2017/7/9
  */
 class SleepBlocked implements Runnable {
-
     @Override
     public void run() {
         Thread.currentThread().setName("SleepBlocked");
@@ -34,7 +33,6 @@ class IOBlocked implements Runnable {
     @Override
     public void run() {
         Thread.currentThread().setName("IOBlocked");
-
         try {
             System.out.println(Thread.currentThread().getName() + "  Waiting for read():");
             in.read();
@@ -83,7 +81,6 @@ public class Interrupting {
     static void test(Runnable r) throws InterruptedException {
         Future<?> f = executor.submit(r);
         Thread.sleep(50);
-
         System.out.println(Thread.currentThread().getName() + "  Interrupting " + r.getClass().getName());
         f.cancel(true);
         System.out.println(Thread.currentThread().getName() + "  Interrupt sent to " + r.getClass().getName());
