@@ -35,8 +35,8 @@ class NIOBlocked implements Runnable {
 
 public class NIOInterruption {
     public static void main(String[] args) throws Exception {
-//        test1();
-        test2();
+        test1();
+//        test2();
     }
 
     public static void test1() throws Exception {
@@ -49,7 +49,7 @@ public class NIOInterruption {
         Thread.sleep(1);
         f.cancel(true);
         Thread.sleep(1);
-        sc1.close();
+        sc1.close(); // 在线程关闭后 资源会自动响应中断
     }
 
     public static void test2() throws Exception {
@@ -61,6 +61,6 @@ public class NIOInterruption {
         executor.shutdown();
         executor.shutdownNow();
         Thread.sleep(1);
-        sc2.close();
+        sc2.close(); // 在线程关闭后 资源会自动响应中断
     }
 }

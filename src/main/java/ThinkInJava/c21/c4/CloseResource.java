@@ -10,9 +10,10 @@ import java.util.concurrent.Executors;
  * Created by zhao_yukuan@163.com
  * on 2017/7/10
  */
+
 public class CloseResource {
     public static void main(String[] args) throws Exception {
-        test1(); // 会按照正常逻辑结束
+        test1(); // socketInput.close(); 线程不能关闭 但是资源关闭 线程会关闭 (NIO不关闭 线程会关闭)
 //        test2();
     }
 
