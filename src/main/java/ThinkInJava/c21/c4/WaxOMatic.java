@@ -59,6 +59,7 @@ class WaxOn implements Runnable {
                 Thread.sleep(200);
                 car.waxed();
                 car.waitForBuffing();
+
             }
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -78,8 +79,8 @@ class WaxOff implements Runnable {
     public void run() {
         try {
             while (!Thread.interrupted()) {
-                car.waitForWaxing();
                 System.out.println("Wax Off");
+                car.waitForWaxing();
                 Thread.sleep(200);
                 car.buffed();
             }
