@@ -10,21 +10,18 @@ import java.util.concurrent.locks.ReentrantLock;
  * Created by zhao_yukuan@163.com
  * on 2017/7/15
  */
-
 public class WaxOMatic2 {
     public static void main(String[] args) throws InterruptedException {
-        Car3 car3 = new Car3();
+        Car2 car2 = new Car2();
         ExecutorService executor = Executors.newCachedThreadPool();
-        executor.execute(new WaxOff3(car3));
-        executor.execute(new WaxOn3(car3));
+        executor.execute(new WaxOff2(car2));
+        executor.execute(new WaxOn2(car2));
         Thread.sleep(5000);
         executor.shutdownNow();
-
     }
-
 }
 
-class Car3 {
+class Car2 {
     private Lock lock = new ReentrantLock();
     private Condition condition = lock.newCondition();
     private boolean wanOn = false;
@@ -72,11 +69,11 @@ class Car3 {
     }
 }
 
-class WaxOn3 implements Runnable {
-    private Car3 car3;
+class WaxOn2 implements Runnable {
+    private Car2 car2;
 
-    public WaxOn3(Car3 car3) {
-        this.car3 = car3;
+    public WaxOn2(Car2 car2) {
+        this.car2 = car2;
     }
 
     @Override
@@ -85,13 +82,12 @@ class WaxOn3 implements Runnable {
             while (!Thread.interrupted()) {
 //                System.out.println("Wax On!");
 //                Thread.sleep(200);
-//                car3.waxed();
-//                car3.waitForBuffing();
-
-                car3.waxed();
+//                car2.waxed();
+//                car2.waitForBuffing();
+                car2.waxed();
                 Thread.sleep(200);
                 System.out.println("Wax On!");
-                car3.waitForBuffing();
+                car2.waitForBuffing();
             }
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -100,31 +96,29 @@ class WaxOn3 implements Runnable {
     }
 }
 
-class WaxOff3 implements Runnable {
-    private Car3 car3;
+class WaxOff2 implements Runnable {
+    private Car2 car2;
 
-    public WaxOff3(Car3 car3) {
-        this.car3 = car3;
+    public WaxOff2(Car2 car2) {
+        this.car2 = car2;
     }
 
     @Override
     public void run() {
         try {
             while (!Thread.interrupted()) {
-//                car3.waitForWaxing();
+//                car2.waitForWaxing();
 //                System.out.println("Wax Off !");
 //                Thread.sleep(200);
-//                car3.buffed();
-
-                car3.buffed();
+//                car2.buffed();
+                car2.buffed();
                 Thread.sleep(200);
                 System.out.println("Wax Off !");
-                car3.waitForWaxing();
+                car2.waitForWaxing();
             }
         } catch (Exception e) {
             System.out.println(e.toString());
         }
         System.out.println("Ending Wax Off task");
-
     }
 }

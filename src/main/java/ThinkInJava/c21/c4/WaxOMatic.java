@@ -55,11 +55,10 @@ class WaxOn implements Runnable {
     public void run() {
         try {
             while (!Thread.interrupted()) {
-                System.out.println("Wax On ");
-                Thread.sleep(200);
                 car.waxed();
+                Thread.sleep(200);
+                System.out.println("Wax On ");
                 car.waitForBuffing();
-
             }
         } catch (Exception e) {
             System.out.println(e.toString());
@@ -79,10 +78,10 @@ class WaxOff implements Runnable {
     public void run() {
         try {
             while (!Thread.interrupted()) {
+                car.buffed();
+                Thread.sleep(200);
                 System.out.println("Wax Off");
                 car.waitForWaxing();
-                Thread.sleep(200);
-                car.buffed();
             }
         } catch (Exception e) {
             System.out.println(e.toString());
