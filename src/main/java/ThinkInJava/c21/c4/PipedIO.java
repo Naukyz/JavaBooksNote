@@ -60,7 +60,7 @@ class Receiver implements Runnable {
         try {
             char c;
             while (true) {
-                // 如果没有会阻塞
+                // 如果没有会阻塞 但是可以中断 如果改成 System.in.read() 不能打断
                 c = (char) in.read();
                 System.out.println("Read:" + c + ",");
                 System.out.println("char -> int " + (int) c);
