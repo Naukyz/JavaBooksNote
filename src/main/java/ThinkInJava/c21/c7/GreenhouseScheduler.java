@@ -21,7 +21,7 @@ public class GreenhouseScheduler {
         this.thermostat = thermostat;
     }
 
-    ScheduledThreadPoolExecutor scheduler = new ScheduledThreadPoolExecutor(10);
+    private ScheduledThreadPoolExecutor scheduler = new ScheduledThreadPoolExecutor(10);
 
     public void schedule(Runnable event, long delay) {
         scheduler.schedule(event, delay, TimeUnit.MILLISECONDS);
@@ -141,7 +141,7 @@ public class GreenhouseScheduler {
     private int humidityDirection = +1;
 
     private Random random = new Random();
-    List<DataPoint> data = Collections.synchronizedList(new ArrayList<>());
+    private List<DataPoint> data = Collections.synchronizedList(new ArrayList<>());
 
     class CollectData implements Runnable {
 
