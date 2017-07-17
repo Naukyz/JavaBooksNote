@@ -25,9 +25,7 @@ public class ExchangerDemo {
 
 class ExchangerProducer<T> implements Runnable {
     private Generator<T> generator;
-
     private Exchanger<List<T>> exchanger;
-
     private List<T> holder;
 
     public ExchangerProducer(Exchanger<List<T>> exchanger, Generator<T> generator, List<T> holder) {
@@ -44,16 +42,13 @@ class ExchangerProducer<T> implements Runnable {
                     holder.add(generator.next());
                 }
                 holder = exchanger.exchange(holder);
-
             }
         } catch (InterruptedException e) {
-
         }
     }
 }
 
 class ExchangerConsumer<T> implements Runnable {
-
     private Exchanger<List<T>> exchanger;
     private List<T> holder;
     private volatile T value;
@@ -71,25 +66,10 @@ class ExchangerConsumer<T> implements Runnable {
                 for (T x : holder) {
                     value = x;
                     holder.remove(x);
-
                 }
             }
         } catch (InterruptedException e) {
-
         }
         System.out.println("Final value: " + value);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
