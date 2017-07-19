@@ -1,4 +1,4 @@
-package ThinkInJava.c19.c1;
+package ThinkInJava.c19.c2;
 
 /**
  * Created by zhao_yukuan@163.com
