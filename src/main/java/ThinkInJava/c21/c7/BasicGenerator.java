@@ -4,7 +4,7 @@ package ThinkInJava.c21.c7;
  * Created by zhao_yukuan@163.com
  * on 2017/7/18
  */
- class BasicGenerator<T> implements Generator<T> {
+class BasicGenerator<T> implements Generator<T> {
 
     private Class<T> type;
 
