@@ -25,8 +25,7 @@ enum Category {
         values = types;
     }
 
-    private static EnumMap<Input, Category> categories =
-            new EnumMap<>(Input.class);
+    private static EnumMap<Input, Category> categories = new EnumMap<>(Input.class);
 
     static {
         for (Category c : Category.class.getEnumConstants())
