@@ -115,8 +115,7 @@ class WaitPerson implements Runnable {
     private static int counter = 0;
     private final int id = counter++;
     private final Restaurant restaurant;
-    BlockingQueue<Plate> filledOrders =
-            new LinkedBlockingQueue<Plate>();
+    BlockingQueue<Plate> filledOrders = new LinkedBlockingQueue<Plate>();
 
     public WaitPerson(Restaurant rest) {
         restaurant = rest;
