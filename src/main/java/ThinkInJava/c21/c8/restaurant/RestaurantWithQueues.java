@@ -23,10 +23,10 @@ class Order { // (A data-transfer object)
     private final WaitPerson waitPerson;
     private final Food food;
 
-    public Order(Customer cust, WaitPerson wp, Food f) {
-        customer = cust;
-        waitPerson = wp;
-        food = f;
+    public Order(Customer customer, WaitPerson waitPerson, Food food) {
+        this.customer = customer;
+        this.waitPerson = waitPerson;
+        this.food = food;
     }
 
     public Food item() {
@@ -53,9 +53,9 @@ class Plate {
     private final Order order;
     private final Food food;
 
-    public Plate(Order ord, Food f) {
-        order = ord;
-        food = f;
+    public Plate(Order order, Food food) {
+        this.order = order;
+        this.food = food;
     }
 
     public Order getOrder() {
@@ -78,8 +78,8 @@ class Customer implements Runnable {
     // Only one course at a time can be received:
     private SynchronousQueue<Plate> placeSetting = new SynchronousQueue<>();
 
-    public Customer(WaitPerson w) {
-        waitPerson = w;
+    public Customer(WaitPerson waitPerson) {
+        this.waitPerson = waitPerson;
     }
 
     public void deliver(Plate p) throws InterruptedException {
@@ -114,8 +114,8 @@ class WaitPerson implements Runnable {
     private final Restaurant restaurant;
     BlockingQueue<Plate> filledOrders = new LinkedBlockingQueue<>();
 
-    public WaitPerson(Restaurant rest) {
-        restaurant = rest;
+    public WaitPerson(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     public void placeOrder(Customer cust, Food food) {
@@ -153,8 +153,8 @@ class Chef implements Runnable {
     private final Restaurant restaurant;
     private static Random rand = new Random(47);
 
-    public Chef(Restaurant rest) {
-        restaurant = rest;
+    public Chef(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     public void run() {
