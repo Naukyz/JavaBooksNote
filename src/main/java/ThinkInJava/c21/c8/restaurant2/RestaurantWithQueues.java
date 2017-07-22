@@ -1,4 +1,4 @@
-//package ThinkInJava.c21.c8.restaurant;
+//package ThinkInJava.c21.c8.restaurant2;
 //
 //import ThinkInJava.c19.c7.Course;
 //import ThinkInJava.c19.c7.Food;
@@ -8,15 +8,13 @@
 //import java.util.Random;
 //import java.util.concurrent.*;
 //
-//import static ThinkInJava.util.Utils.*;
+//import static ThinkInJava.util.Utils.print;
 //
 ///**
 // * Created by zhao_yukuan@163.com
 // * on 2017/7/21
 // */
-//
-//// This is given to the waiter, who gives it to the chef:
-//class Order { // (A data-transfer object)
+//class Order {
 //    private static int counter = 0;
 //    private final int id = counter++;
 //    private final Customer customer;
@@ -29,10 +27,6 @@
 //        this.food = food;
 //    }
 //
-//    public Food item() {
-//        return food;
-//    }
-//
 //    public Customer getCustomer() {
 //        return customer;
 //    }
@@ -41,14 +35,17 @@
 //        return waitPerson;
 //    }
 //
+//    public Food getFood() {
+//        return food;
+//    }
+//
 //    public String toString() {
-//        return "Order: " + id + " item: " + food +
+//        return "Order: " + id + " food: " + food +
 //                " for: " + customer +
 //                " served by: " + waitPerson;
 //    }
 //}
 //
-//// This is what comes back from the chef:
 //class Plate {
 //    private final Order order;
 //    private final Food food;
@@ -75,7 +72,6 @@
 //    private static int counter = 0;
 //    private final int id = counter++;
 //    private final WaitPerson waitPerson;
-//    // Only one course at a time can be received:
 //    private SynchronousQueue<Plate> placeSetting = new SynchronousQueue<>();
 //
 //    public Customer(WaitPerson waitPerson) {
@@ -83,18 +79,18 @@
 //    }
 //
 //    public void deliver(Plate p) throws InterruptedException {
-//        // Only blocks if customer is still
-//        // eating the previous course:
 //        placeSetting.put(p);
 //    }
 //
 //    public void run() {
 //        for (Course course : Course.values()) {
+//            // 点菜
 //            Food food = course.randomSelection();
 //            try {
+//                //服务员把菜给饭店
 //                waitPerson.placeOrder(this, food);
-//                // Blocks until course has been delivered:
-//                print(this + "eating " + placeSetting.take());
+//                //等着吃
+//                print(this + "eating " + placeSetting.take().getFood());
 //            } catch (InterruptedException e) {
 //                print(this + "waiting for " + course + " interrupted");
 //                break;
@@ -112,28 +108,31 @@
 //    private static int counter = 0;
 //    private final int id = counter++;
 //    private final Restaurant restaurant;
-//    BlockingQueue<Plate> filledOrders = new LinkedBlockingQueue<>();
+//    private BlockingQueue<Plate> filledOrders = new LinkedBlockingQueue<>();
 //
 //    public WaitPerson(Restaurant restaurant) {
 //        this.restaurant = restaurant;
 //    }
 //
-//    public void placeOrder(Customer cust, Food food) {
+//    public void placeOrder(Customer customer, Food food) {
 //        try {
-//            // Shouldn't actually block because this is
-//            // a LinkedBlockingQueue with no size limit:
-//            restaurant.orders.put(new Order(cust, this, food));
+//            restaurant.receiveOrder(new Order(customer, this, food));
 //        } catch (InterruptedException e) {
 //            print(this + " placeOrder interrupted");
 //        }
 //    }
 //
+//    public void putPlate(Plate plate) throws InterruptedException {
+//        filledOrders.put(plate);
+//    }
+//
 //    public void run() {
 //        try {
 //            while (!Thread.interrupted()) {
-//                // Blocks until a course is ready
+//                // 等着从厨师那里取盘子
 //                Plate plate = filledOrders.take();
 //                print(this + "received " + plate + " delivering to " + plate.getOrder().getCustomer());
+//                //把盘子给顾客
 //                plate.getOrder().getCustomer().deliver(plate);
 //            }
 //        } catch (InterruptedException e) {
@@ -151,7 +150,7 @@
 //    private static int counter = 0;
 //    private final int id = counter++;
 //    private final Restaurant restaurant;
-//    private static Random rand = new Random(47);
+//    private static Random rand = new Random();
 //
 //    public Chef(Restaurant restaurant) {
 //        this.restaurant = restaurant;
@@ -160,13 +159,14 @@
 //    public void run() {
 //        try {
 //            while (!Thread.interrupted()) {
-//                // Blocks until an order appears:
-//                Order order = restaurant.orders.take();
-//                Food requestedItem = order.item();
-//                // Time to prepare order:
+//                //从饭店要菜单
+//                Order order = restaurant.sendOrder();
+//                Food requestedItem = order.getFood();
 //                TimeUnit.MILLISECONDS.sleep(rand.nextInt(500));
+//                //把菜装盘子里
 //                Plate plate = new Plate(order, requestedItem);
-//                order.getWaitPerson().filledOrders.put(plate);
+//                //服务员装盘
+//                order.getWaitPerson().putPlate(plate);
 //            }
 //        } catch (InterruptedException e) {
 //            print(this + " interrupted");
@@ -181,10 +181,9 @@
 //
 //class Restaurant implements Runnable {
 //    private List<WaitPerson> waitPersons = new ArrayList<>();
-//    private List<Chef> chefs = new ArrayList<>();
 //    private ExecutorService exec;
-//    private static Random rand = new Random(47);
-//    BlockingQueue<Order> orders = new LinkedBlockingQueue<>();
+//    private static Random rand = new Random();
+//    private BlockingQueue<Order> orders = new LinkedBlockingQueue<>();
 //
 //    public Restaurant(ExecutorService e, int nWaitPersons, int nChefs) {
 //        exec = e;
@@ -195,15 +194,23 @@
 //        }
 //        for (int i = 0; i < nChefs; i++) {
 //            Chef chef = new Chef(this);
-//            chefs.add(chef);
 //            exec.execute(chef);
 //        }
+//    }
+//
+//    //Restaurant 接收 Order
+//    public void receiveOrder(Order order) throws InterruptedException {
+//        orders.put(order);
+//    }
+//
+//    //Restaurant 发送 Order 给 chef
+//    public Order sendOrder() throws InterruptedException {
+//        return orders.take();
 //    }
 //
 //    public void run() {
 //        try {
 //            while (!Thread.interrupted()) {
-//                // A new customer arrives; assign a WaitPerson:
 //                WaitPerson wp = waitPersons.get(rand.nextInt(waitPersons.size()));
 //                Customer c = new Customer(wp);
 //                exec.execute(c);
@@ -221,12 +228,7 @@
 //        ExecutorService exec = Executors.newCachedThreadPool();
 //        Restaurant restaurant = new Restaurant(exec, 5, 2);
 //        exec.execute(restaurant);
-//        if (args.length > 0) // Optional argument
-//            TimeUnit.SECONDS.sleep(new Integer(args[0]));
-//        else {
-//            print("Press 'Enter' to quit");
-//            System.in.read();
-//        }
+//        System.in.read();
 //        exec.shutdownNow();
 //    }
 //}
