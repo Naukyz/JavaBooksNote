@@ -149,7 +149,6 @@ abstract class Robot implements Runnable {
 
     public void assignAssembler(Assembler assembler) {
         this.assembler = assembler;
-
     }
 
     public synchronized void engage() {
@@ -187,7 +186,6 @@ abstract class Robot implements Runnable {
         }
         print(this + " off");
     }
-
 
     public String toString() {
         return (getClass().getName());
@@ -264,13 +262,10 @@ public class CarBuilder {
         exec.execute(new EngineRobot(robotPool));
         exec.execute(new DriveTrainRobot(robotPool));
         exec.execute(new WheelRobot(robotPool));
-
         exec.execute(new Assembler(chassisQueue, finishingQueue, robotPool));
-
         exec.execute(new Reporter(finishingQueue));
         /* Start everything running by producing chassis: */
         exec.execute(new ChassisBuilder(chassisQueue));
-
         TimeUnit.SECONDS.sleep(7);
         exec.shutdownNow();
     }
