@@ -16,7 +16,7 @@ import static ThinkInJava.util.Utils.*;
 
 abstract class Accumulator {
     // public static long cycles = 50000L;
-    public static long cycles = 1000L;
+    public static long cycles = 1_000_000L;
 
     // Number of Modifiers and Readers during each test:
     private static final int N = 4;
@@ -26,7 +26,7 @@ abstract class Accumulator {
     protected volatile long value = 0;
     protected long duration = 0;
     protected String id = "error";
-    protected final static int SIZE = 100000;
+    protected final static int SIZE = 1_000_000;
     protected static int[] preLoaded = new int[SIZE];
 
     static {
@@ -94,12 +94,18 @@ class BaseLine extends Accumulator {
     }
 
     public void accumulate() {
-        value += preLoaded[index++];
-        if (index >= SIZE) index = 0;
+        synchronized (this) {
+            value += preLoaded[index++];
+            if (index >= SIZE) index = 0;
+        }
+
     }
 
     public long read() {
-        return value;
+        //synchronized (this){
+            return value;
+
+        //}
     }
 }
 
@@ -157,10 +163,14 @@ class AtomicTest extends Accumulator {
         // Oops! Relying on more than one Atomic at
         // a time doesn't work. But it still gives us
         // a performance indicator:
-        int i = index.getAndIncrement();
-        value.getAndAdd(preLoaded[i]);
-        if (++i >= SIZE)
-            index.set(0);
+
+        // 多个原子操作会出错 下面两句应该锁
+        synchronized (this) {
+            value.getAndAdd(preLoaded[index.getAndIncrement()]);
+            if (index.get() >= SIZE) index.set(0);
+        }
+
+
     }
 
     public long read() {
@@ -201,7 +211,7 @@ public class SynchronizationComparisons {
         // Produce multiple data points:
         for (int i = 0; i < iterations; i++) {
             test();
-            Accumulator.cycles *= 2;
+            //Accumulator.cycles *= 2;
         }
         Accumulator.exec.shutdown();
     }
