@@ -10,7 +10,7 @@ import java.util.concurrent.*;
  * Created by zhao_yukuan@163.com
  * on 2017/7/22
  */
-class Car {
+class Car { // synchronized 没有用
     private final int id;
     private boolean engine = false;
     private boolean driveTrain = false;
