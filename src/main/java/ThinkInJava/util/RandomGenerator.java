@@ -77,7 +77,7 @@ public class RandomGenerator {
         }
 
         public java.lang.Long next() {
-            return new java.lang.Long(r.nextInt(mod));
+            return (long) r.nextInt(mod);
         }
     }
 

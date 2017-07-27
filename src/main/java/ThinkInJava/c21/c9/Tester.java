@@ -1,5 +1,4 @@
 package ThinkInJava.c21.c9;
-
 /**
  * Created by zhao_yukuan@163.com
  * on 2017/7/26
@@ -9,7 +8,6 @@ import ThinkInJava.util.Generated;
 import ThinkInJava.util.RandomGenerator;
 
 import java.util.concurrent.*;
-
 
 public abstract class Tester<C> {
     static int testReps = 10;
@@ -55,11 +53,12 @@ public abstract class Tester<C> {
         } catch (InterruptedException ex) {
             System.out.println("endLatch interrupted");
         }
-        System.out.printf("%-27s %14d %14d\n",
-                testId, readTime, writeTime);
-        if (readTime != 0 && writeTime != 0)
-            System.out.printf("%-27s %14d\n",
-                    "readTime + writeTime =", readTime + writeTime);
+        System.out.printf("%-27s %14d %14d\n", testId, readTime, writeTime);
+
+        if (readTime != 0 && writeTime != 0) {
+            System.out.printf("%-27s %14d\n", "readTime + writeTime =", readTime + writeTime);
+        }
+
     }
 
     abstract class TestTask implements Runnable {
