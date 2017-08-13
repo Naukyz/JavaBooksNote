@@ -22,7 +22,8 @@ public class Rethrowing {
         } catch (Exception e) {
             System.out.println("Inside h(),e.printStackTrace()");
             e.printStackTrace(System.out);
-            throw (Exception) e.fillInStackTrace(); //不是显示原抛出点的信息 而是显示重新抛出点的信息
+            throw (Exception) e.fillInStackTrace();
+            //不是显示原抛出点的信息 而是显示重新抛出点的信息
         }
     }
 
