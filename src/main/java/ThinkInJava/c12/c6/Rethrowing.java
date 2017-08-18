@@ -2,7 +2,7 @@ package ThinkInJava.c12.c6;
 
 public class Rethrowing {
     public static void f() throws Exception {
-        System.out.println("originating the exception in f()");
+//        System.out.println("originating the exception in f()");
         throw new Exception("thrown from f()");
     }
 
@@ -10,8 +10,8 @@ public class Rethrowing {
         try {
             f();
         } catch (Exception e) {
-            System.out.println("Inside g(),e.printStackTrace()");
-            e.printStackTrace(System.out);
+//            System.out.println("Inside g(),e.printStackTrace()");
+//            e.printStackTrace(System.out);
             throw e;
         }
     }
@@ -20,8 +20,8 @@ public class Rethrowing {
         try {
             f();
         } catch (Exception e) {
-            System.out.println("Inside h(),e.printStackTrace()");
-            e.printStackTrace(System.out);
+//            System.out.println("Inside h(),e.printStackTrace()");
+//            e.printStackTrace(System.out);
             throw (Exception) e.fillInStackTrace();
             //不是显示原抛出点的信息 而是显示重新抛出点的信息
         }
@@ -31,7 +31,7 @@ public class Rethrowing {
         try {
             g();
         } catch (Exception e) {
-            System.out.println("main: printStackTrace()");
+//            System.out.println("main: printStackTrace()");
             e.printStackTrace(System.out);
         }
         System.out.println("---");
@@ -39,7 +39,7 @@ public class Rethrowing {
         try {
             h();
         } catch (Exception e) {
-            System.out.println("main: printStackTrace()");
+//            System.out.println("main: printStackTrace()");
             e.printStackTrace(System.out);
         }
     }
