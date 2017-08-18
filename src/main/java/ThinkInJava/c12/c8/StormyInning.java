@@ -4,7 +4,9 @@ package ThinkInJava.c12.c8;
 // specified in their base-class versions, or exceptions
 // derived from the base-class exceptions.
 
-// 父类方法中抛出异常 子类的方法也必须抛出
+// 父类方法中抛出异常 子类的方法可以不抛出 如果抛出一定是父类异常或其子类
+// 父类方法中没有抛出异常 子类方法不能抛出异常
+// 父类构造器抛出异常 子类必须抛出 但不必须是 父类异常或其子类
 
 class BaseballException extends Exception {
 }
@@ -56,7 +58,7 @@ public class StormyInning extends Inning implements Storm {
     }
 
     // Regular methods must conform to base class:
-    //! void walk() throws PopFoul {} //Compile error
+    //void walk() throws PopFoul {} //Compile error
     // Interface CANNOT add exceptions to existing
     // methods from the base class:
     //! public void event() throws RainedOut {}
