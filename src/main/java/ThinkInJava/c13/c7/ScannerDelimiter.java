@@ -7,6 +7,7 @@ public class ScannerDelimiter {
         Scanner scanner = new Scanner("12, 42, 78, 99, 42");
         scanner.useDelimiter("\\s*,\\s*"); //使用逗号作为定界符
         System.out.println(scanner.delimiter());
+
         while (scanner.hasNextInt())
             System.out.println(scanner.nextInt());
     }

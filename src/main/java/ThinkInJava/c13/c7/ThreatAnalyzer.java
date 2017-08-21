@@ -18,7 +18,8 @@ public class ThreatAnalyzer {
                 "(\\d{2}/\\d{2}/\\d{4})";
         while (scanner.hasNext(pattern)) {
             System.out.println(scanner.next(pattern));
-            // 相当于 Matcher
+            // 相当于 Matcher 但是 每次循环调用 scanner.match() 在scanner.next()后面
+            // 而不是 Mather 的方法
             MatchResult match = scanner.match();
             String ip = match.group(1);
             String date = match.group(2);
