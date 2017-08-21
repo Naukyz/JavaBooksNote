@@ -1,4 +1,4 @@
-package ThinkInJava.c12.c8;
+package ThinkInJava.c12.c9;
 //: exceptions/StormyInning.java
 // Overridden methods may throw only the exceptions
 // specified in their base-class versions, or exceptions
@@ -7,6 +7,8 @@ package ThinkInJava.c12.c8;
 // 父类方法中抛出异常 子类的方法可以不抛出 如果抛出一定是父类异常或其子类
 // 父类方法中没有抛出异常 子类方法不能抛出异常
 // 父类构造器抛出异常 子类必须抛出 但不必须是 父类异常或其子类
+
+
 
 class BaseballException extends Exception {
 }
