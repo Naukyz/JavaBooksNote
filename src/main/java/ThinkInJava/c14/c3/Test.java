@@ -1,4 +1,4 @@
-package ThinkInJava.c14.c2;
+package ThinkInJava.c14.c3;
 
 /**
  * Created by zhao_yukuan@163.com

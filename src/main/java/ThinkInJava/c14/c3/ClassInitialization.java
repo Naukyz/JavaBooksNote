@@ -1,4 +1,4 @@
-package ThinkInJava.c14.c2;//: typeinfo/ClassInitialization.java
+package ThinkInJava.c14.c3;//: typeinfo/ClassInitialization.java
 
 import java.util.*;
 
@@ -40,7 +40,7 @@ public class ClassInitialization {
         System.out.println(Initable.staticFinal2);
 //         Does trigger initialization:
         System.out.println(Initable2.staticNonFinal);
-        Class initable3 = Class.forName("ThinkInJava.c14.c2.Initable3");
+        Class initable3 = Class.forName("ThinkInJava.c14.c3.Initable3");
         System.out.println("After creating Initable3 ref");
         System.out.println(Initable3.staticNonFinal);
     }

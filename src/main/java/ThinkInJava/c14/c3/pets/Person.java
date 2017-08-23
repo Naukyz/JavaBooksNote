@@ -1,5 +1,5 @@
 //: typeinfo/pets/Person.java
-package ThinkInJava.c14.c2.pets;
+package ThinkInJava.c14.c3.pets;
 
 public class Person extends Individual {
     public Person(String name) {

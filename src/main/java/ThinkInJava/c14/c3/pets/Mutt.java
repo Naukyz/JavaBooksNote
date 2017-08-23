@@ -1,5 +1,5 @@
 //: typeinfo/pets/Mutt.java
-package ThinkInJava.c14.c2.pets;
+package ThinkInJava.c14.c3.pets;
 
 public class Mutt extends Dog {
   public Mutt(String name) { super(name); }

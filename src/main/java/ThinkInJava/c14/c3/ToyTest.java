@@ -1,6 +1,6 @@
 //: typeinfo/toys/ToyTest.java
 // Testing class Class.
-package ThinkInJava.c14.c2;
+package ThinkInJava.c14.c3;
 
 import static ThinkInJava.util.Utils.*;
 
@@ -40,7 +40,7 @@ public class ToyTest {
     public static void main(String[] args) {
         Class c = null;
         try {
-            c = Class.forName("ThinkInJava.c14.c2.FancyToy");
+            c = Class.forName("ThinkInJava.c14.c3.FancyToy");
         } catch (ClassNotFoundException e) {
             print("Can't find FancyToy");
             System.exit(1);

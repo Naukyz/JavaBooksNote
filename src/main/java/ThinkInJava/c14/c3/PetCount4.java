@@ -1,7 +1,7 @@
-package ThinkInJava.c14.c2;//: typeinfo/PetCount4.java
+package ThinkInJava.c14.c3;//: typeinfo/PetCount4.java
 
-import ThinkInJava.c14.c2.pets.Pet;
-import ThinkInJava.c14.c2.pets.Pets;
+import ThinkInJava.c14.c3.pets.Pet;
+import ThinkInJava.c14.c3.pets.Pets;
 import ThinkInJava.util.TypeCounter;
 
 import static ThinkInJava.util.Utils.*;

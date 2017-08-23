@@ -1,5 +1,5 @@
 //: ThinkInJava.c14.c2/pets/ForNameCreator.java
-package ThinkInJava.c14.c2.pets;
+package ThinkInJava.c14.c3.pets;
 
 import java.util.*;
 

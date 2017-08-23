@@ -1,6 +1,6 @@
 //: typeinfo/pets/PetCreator.java
 // Creates random sequences of Pets.
-package ThinkInJava.c14.c2.pets;
+package ThinkInJava.c14.c3.pets;
 
 import java.util.*;
 

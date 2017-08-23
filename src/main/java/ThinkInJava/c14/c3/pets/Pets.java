@@ -1,6 +1,6 @@
 //: typeinfo/pets/Pets.java
 // Facade to produce a default PetCreator.
-package ThinkInJava.c14.c2.pets;
+package ThinkInJava.c14.c3.pets;
 
 import java.util.*;
 

@@ -1,6 +1,6 @@
 //: typeinfo/pets/LiteralPetCreator.java
 // Using class literals.
-package ThinkInJava.c14.c2.pets;
+package ThinkInJava.c14.c3.pets;
 
 import java.util.*;
 

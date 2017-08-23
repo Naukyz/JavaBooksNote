@@ -1,6 +1,6 @@
-package ThinkInJava.c14.c2;
+package ThinkInJava.c14.c3;
 
-import ThinkInJava.c14.c2.pets.*;
+import ThinkInJava.c14.c3.pets.*;
 //: typeinfo/PetCount.java
 // Using instanceof.
 import static ThinkInJava.util.Utils.*;

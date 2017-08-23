@@ -1,6 +1,6 @@
 //: typeinfo/toys/GenericToyTest.java
 // Testing class Class.
-package ThinkInJava.c14.c2;
+package ThinkInJava.c14.c3;
 
 public class GenericToyTest {
     public static void main(String[] args) throws Exception {
