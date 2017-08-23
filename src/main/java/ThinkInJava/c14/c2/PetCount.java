@@ -13,9 +13,9 @@ public class PetCount {
         for (Pet pet : creator.createArray(20)) {
             // List each individual pet:
             printnb(pet.getClass().getSimpleName() + " ");
-            if (pet instanceof Pet) {
-                counter.count("Pet");
-            }
+//            if (pet instanceof Pet) {
+            counter.count("Pet");
+//            }
             if (pet instanceof Dog) {
                 counter.count("Dog");
             }
