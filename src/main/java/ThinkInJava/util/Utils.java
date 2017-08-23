@@ -13,6 +13,14 @@ public class Utils {
         System.out.println(o);
     }
 
+    public static void printnb() {
+        printnb("");
+    }
+
+    public static void print() {
+        print("");
+    }
+
     public static void printf(String format, Object... args) {
         System.out.println(String.format(format, args));
     }
