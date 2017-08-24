@@ -14,8 +14,10 @@ public class SimpleDynamicProxy2 {
         i.doSomethingElse("a");
         System.out.println("---");
 
-        Interface i2 = ProxyUtil2.newProxy(Interface.class,
-                new SimpleDynamicProxyHandler2(i));
+        Interface i2 = ProxyUtil2.newProxy(
+                Interface.class,
+                new SimpleDynamicProxyHandler2(i)
+        );
         i2.doSomeThing();
         i2.doSomethingElse("a");
 
