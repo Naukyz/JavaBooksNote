@@ -1,4 +1,4 @@
-package ThinkInJava.c14.c7.ProxyDemo;
+package ThinkInJava.c14.c7;
 
 /**
  * Created by zhao_yukuan@163.com

@@ -1,4 +1,4 @@
-package ThinkInJava.c14.c7.ProxyDemo;
+package ThinkInJava.c14.c7;
 
 import java.lang.reflect.*;
 import java.util.Arrays;
