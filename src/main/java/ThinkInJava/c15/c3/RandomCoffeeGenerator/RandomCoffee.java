@@ -10,6 +10,8 @@ import java.util.Random;
  * on 2017/4/21
  */
 public class RandomCoffee implements Generator<Coffee>, Iterable<Coffee> {
+    public RandomCoffee() {
+    }
 
     private Class[] types = {A.class, B.class};
 

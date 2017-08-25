@@ -8,7 +8,9 @@ import java.util.Iterator;
  * Created by zhao_yukuan@163.com
  * on 2017/4/29
  */
-class Fibonacci implements Generator<Integer>, Iterable<Integer> {
+public class Fibonacci implements Generator<Integer>, Iterable<Integer> {
+    public Fibonacci() {
+    }
 
     private int size;
     private int count;
