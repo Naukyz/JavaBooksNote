@@ -1,10 +1,11 @@
-package ThinkInJava.c15.c5;//: generics/BankTeller.java
+package ThinkInJava.c15.c5;
+
+//: generics/BankTeller.java
 // A very simple bank teller simulation.
 
 import ThinkInJava.util.Generator;
 
 import java.util.*;
-
 
 class Customer {
     private static long counter = 1;
@@ -27,8 +28,17 @@ class Customer {
     }
 }
 
+
 class Teller {
     private static long counter = 1;
+
+    // A single Generator object:
+    public static Generator<Teller> generator = new Generator<Teller>() {
+        public Teller next() {
+            return new Teller();
+        }
+    };
+
     private final long id = counter++;
 
     private Teller() {
@@ -37,15 +47,8 @@ class Teller {
     public String toString() {
         return "Teller " + id;
     }
-
-    // A single Generator object:
-    public static Generator<Teller> generator =
-            new Generator<Teller>() {
-                public Teller next() {
-                    return new Teller();
-                }
-            };
 }
+
 
 public class BankTeller {
     public static void serve(Teller t, Customer c) {
@@ -56,12 +59,15 @@ public class BankTeller {
         Random rand = new Random(47);
         Queue<Customer> line = new LinkedList<Customer>();
         Generators.fill(line, Customer.generator(), 15);
+
         List<Teller> tellers = new ArrayList<Teller>();
         Generators.fill(tellers, Teller.generator, 4);
+
         for (Customer c : line)
             serve(tellers.get(rand.nextInt(tellers.size())), c);
     }
-} /* Output:
+}
+/* Output:
 Teller 3 serves Customer 1
 Teller 2 serves Customer 2
 Teller 3 serves Customer 3
@@ -77,4 +83,6 @@ Teller 4 serves Customer 12
 Teller 2 serves Customer 13
 Teller 1 serves Customer 14
 Teller 1 serves Customer 15
-*///:~
+*/
+
+//:~
