@@ -29,9 +29,9 @@ public class GenericReading {
     static void f2() {
         Reader<Fruit> fruitReader = new Reader<Fruit>();
         Fruit f = fruitReader.readExact(fruit);
-        // Fruit a = fruitReader.readExact(apples); // Error:
-        // readExact(List<Fruit>) cannot be
-        // applied to (List<Apple>).
+//         Fruit a = fruitReader.readExact(apples); // Error:
+//         readExact(List<Fruit>) cannot be
+//         applied to (List<Apple>).
     }
 
     static class CovariantReader<T> {
