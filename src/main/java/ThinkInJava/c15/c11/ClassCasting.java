@@ -22,6 +22,8 @@ public class ClassCasting {
             in = new ObjectInputStream(new FileInputStream("D:\\a.txt"));
 
             out.writeObject(list);
+            out.writeObject(list);
+
             List<Widget> list1 = (AA) in.readObject();
             Widget widget = list1.get(0);
             System.out.println(widget);
