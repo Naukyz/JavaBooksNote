@@ -1,9 +1,6 @@
 package ThinkInJava.c15.c10;
 //: generics/CaptureConversion.java
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class CaptureConversion {
     static <T> void f1(Holder<T> holder) {
         T t = holder.get();
@@ -18,7 +15,6 @@ public class CaptureConversion {
     public static void main(String[] args) {
         Holder raw = new Holder<Integer>(1);
         f1(raw); // Produces warnings
-
         f2(raw); // No warnings
         Holder rawBasic = new Holder();
         rawBasic.set(new Object()); // Warning
