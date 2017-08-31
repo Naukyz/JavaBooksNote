@@ -8,6 +8,7 @@ import java.util.*;
 // precision 字符串表示输出字符的最大的数量 浮点数表示最大小数位数 不能应用于整数
 // s字符串 d整数 f浮点数
 
+//整数左面可以自动补0  例如 %04x (十六进制 最长4位不够左面补0)
 public class Receipt {
     private double total = 0;
     private Formatter f = new Formatter(System.out);
